@@ -7,21 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2436FE832090FB73003071FE /* UIViewController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436FE822090FB73003071FE /* UIViewController+Debug.swift */; };
 		24A943C2208990E700701CDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A943C1208990E700701CDD /* AppDelegate.swift */; };
 		24A943C4208990E700701CDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A943C3208990E700701CDD /* ViewController.swift */; };
-		24A943C7208990E700701CDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A943C5208990E700701CDD /* Main.storyboard */; };
 		24A943C9208990E900701CDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24A943C8208990E900701CDD /* Assets.xcassets */; };
 		24A943CC208990E900701CDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A943CA208990E900701CDD /* LaunchScreen.storyboard */; };
+		24A943D42089934900701CDD /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A943D32089934900701CDD /* CustomCell.swift */; };
+		8D401F8B990F339FDF1E3B28 /* Pods_YogaTables.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A75BC07FD912D8682DE17D /* Pods_YogaTables.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		238FB536197ABD43D271A8E0 /* Pods-YogaTables.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogaTables.release.xcconfig"; path = "Pods/Target Support Files/Pods-YogaTables/Pods-YogaTables.release.xcconfig"; sourceTree = "<group>"; };
+		2436FE822090FB73003071FE /* UIViewController+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Debug.swift"; sourceTree = "<group>"; };
 		24A943BE208990E700701CDD /* YogaTables.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YogaTables.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24A943C1208990E700701CDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24A943C3208990E700701CDD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		24A943C6208990E700701CDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		24A943C8208990E900701CDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24A943CB208990E900701CDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24A943CD208990E900701CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24A943D32089934900701CDD /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		7259B11637D706C2B36910CB /* Pods-YogaTables.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogaTables.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YogaTables/Pods-YogaTables.debug.xcconfig"; sourceTree = "<group>"; };
+		A0A75BC07FD912D8682DE17D /* Pods_YogaTables.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YogaTables.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D401F8B990F339FDF1E3B28 /* Pods_YogaTables.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0EC85985B385778E31C554EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7259B11637D706C2B36910CB /* Pods-YogaTables.debug.xcconfig */,
+				238FB536197ABD43D271A8E0 /* Pods-YogaTables.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		24A943B5208990E700701CDD = {
 			isa = PBXGroup;
 			children = (
 				24A943C0208990E700701CDD /* YogaTables */,
 				24A943BF208990E700701CDD /* Products */,
+				0EC85985B385778E31C554EE /* Pods */,
+				FCB03ED0C7BF5C7310B6FDFC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +74,21 @@
 			children = (
 				24A943C1208990E700701CDD /* AppDelegate.swift */,
 				24A943C3208990E700701CDD /* ViewController.swift */,
-				24A943C5208990E700701CDD /* Main.storyboard */,
+				24A943D32089934900701CDD /* CustomCell.swift */,
 				24A943C8208990E900701CDD /* Assets.xcassets */,
 				24A943CA208990E900701CDD /* LaunchScreen.storyboard */,
 				24A943CD208990E900701CDD /* Info.plist */,
+				2436FE822090FB73003071FE /* UIViewController+Debug.swift */,
 			);
 			path = YogaTables;
+			sourceTree = "<group>";
+		};
+		FCB03ED0C7BF5C7310B6FDFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A0A75BC07FD912D8682DE17D /* Pods_YogaTables.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24A943D0208990E900701CDD /* Build configuration list for PBXNativeTarget "YogaTables" */;
 			buildPhases = (
+				D3AD0FD0146C40563D849ACB /* [CP] Check Pods Manifest.lock */,
 				24A943BA208990E700701CDD /* Sources */,
 				24A943BB208990E700701CDD /* Frameworks */,
 				24A943BC208990E700701CDD /* Resources */,
+				213C9B3497620110DCCFCD02 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,11 +153,51 @@
 			files = (
 				24A943CC208990E900701CDD /* LaunchScreen.storyboard in Resources */,
 				24A943C9208990E900701CDD /* Assets.xcassets in Resources */,
-				24A943C7208990E700701CDD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		213C9B3497620110DCCFCD02 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-YogaTables/Pods-YogaTables-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/YogaKit/YogaKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YogaKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YogaTables/Pods-YogaTables-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3AD0FD0146C40563D849ACB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YogaTables-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		24A943BA208990E700701CDD /* Sources */ = {
@@ -136,6 +205,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				24A943C4208990E700701CDD /* ViewController.swift in Sources */,
+				24A943D42089934900701CDD /* CustomCell.swift in Sources */,
+				2436FE832090FB73003071FE /* UIViewController+Debug.swift in Sources */,
 				24A943C2208990E700701CDD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +214,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		24A943C5208990E700701CDD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				24A943C6208990E700701CDD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		24A943CA208990E900701CDD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -278,9 +341,11 @@
 		};
 		24A943D1208990E900701CDD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7259B11637D706C2B36910CB /* Pods-YogaTables.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 85EL87WDLB;
 				INFOPLIST_FILE = YogaTables/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -295,9 +360,11 @@
 		};
 		24A943D2208990E900701CDD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 238FB536197ABD43D271A8E0 /* Pods-YogaTables.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 85EL87WDLB;
 				INFOPLIST_FILE = YogaTables/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
