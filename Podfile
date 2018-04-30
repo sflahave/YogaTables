@@ -8,4 +8,5 @@ target 'YogaTables' do
   # Pods for YogaTables
   pod 'Yoga', '~> 1.6.0'
   pod 'YogaKit', '~> 1.6.0'
+#  pod 'FlexLayout'
 end

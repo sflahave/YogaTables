@@ -17,13 +17,18 @@ class CustomCell: UITableViewCell {
     public var labelText: String? {
         didSet {
             label.text = labelText
-            label.sizeToFit()
+            label.yoga.markDirty()
+//			label.sizeToFit()
+//			configureLayoutWithYoga()
         }
     }
     
     public var valueText: String? {
         didSet {
             value.text = valueText
+			value.yoga.markDirty()
+//			value.sizeToFit()
+//			configureLayoutWithYoga()
         }
     }
     
@@ -36,7 +41,9 @@ class CustomCell: UITableViewCell {
         value = UILabel()
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
+		self.backgroundColor = .white
+
         setupSubviews()
     }
     
@@ -46,66 +53,117 @@ class CustomCell: UITableViewCell {
     
     public func setText(labelText: String, valueText: String?) {
         label.text = labelText
-        value.text = valueText
-        applyLayout()
-    }
-    
+//		label.yoga.markDirty()
+
+		value.text = valueText
+//		value.yoga.markDirty()
+
+//		contentView.yoga.markDirty()
+
+//		applyLayout()
+	}
+
     private func setupSubviews() {
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.backgroundColor = .yellow
-        contentView.addSubview(label)
-        
-        value.font = UIFont.systemFont(ofSize: 15)
-        value.backgroundColor = UIColor.magenta
-        contentView.addSubview(value)
+		label.font = UIFont.boldSystemFont(ofSize: 15)
+		label.backgroundColor = .yellow
+		label.numberOfLines = 1
+//		label.lineBreakMode = .byWordWrapping
 
-		configureLayout()
-    }
+		value.font = UIFont.systemFont(ofSize: 15)
+		value.backgroundColor = UIColor.magenta
+		value.numberOfLines = 0
+		value.lineBreakMode = .byWordWrapping
 
-	public func configureLayout() {
+		configureViewHierarchy()
+//		configureLayoutWithYoga()
+		configureLayoutWithAutolayout()
+	}
+
+	private func configureViewHierarchy() {
+		contentView.addSubview(label)
+		contentView.addSubview(value)
+	}
+
+	public func configureLayoutWithAutolayout() {
+		label.translatesAutoresizingMaskIntoConstraints = false
+		value.translatesAutoresizingMaskIntoConstraints = false
+
+		label.sizeToFit()
+		value.sizeToFit()
+
+		label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+		value.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+		value.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+
+		let layoutGuide = contentView.layoutMarginsGuide
+
+		NSLayoutConstraint.activate([
+			label.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: 8.0),
+			label.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor),
+//			label.widthAnchor.constraint(greaterThanOrEqualToConstant: 50),
+
+			value.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 8),
+			value.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor),
+			value.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -8),
+			value.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: 8),
+			value.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -8)
+
+		])
+	}
+
+	public func configureLayoutWithYoga() {
 		contentView.configureLayout { layout in
 			layout.isEnabled = true
 			layout.width = YGValue(value: 100, unit: .percent)
 			layout.maxWidth = YGValue(value: 100, unit: .percent)
-			layout.height = YGValue(value: 100, unit: .percent)
-			layout.minHeight = 44
 			layout.flexDirection = .row
 			layout.justifyContent = .flexStart
-			layout.alignItems = .center
-			layout.marginLeft = 16
-			layout.marginRight = 16
 		}
 
 		label.configureLayout { layout in
 			layout.isEnabled = true
 			layout.alignSelf = .center
-			layout.minHeight = 21
+//			layout.minHeight = 44
 			layout.minWidth = 30
 		}
 
 		value.configureLayout { layout in
 			layout.isEnabled = true
-			layout.minHeight = 44
-			layout.flexGrow = 2
+//			layout.minHeight = 44
+			layout.flexGrow = 1
 			layout.flexShrink = 1
 			layout.marginLeft = 8
+			layout.marginRight = 8
 			layout.alignSelf = .center
+			layout.marginTop = 8
+			layout.marginBottom = 8
 		}
 
 		applyLayout()
 	}
 
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        configureLayout()
-    }
-    
-    public func applyLayout() {
-        contentView.yoga.applyLayout(preservingOrigin: false)
-    }
+	public func applyLayout() {
+		contentView.yoga.applyLayout(preservingOrigin: true)
+//		contentView.yoga.applyLayout(preservingOrigin: true, dimensionFlexibility: .flexibleHeigth)
+	}
 
-//    public override func sizeThatFits(_ size: CGSize) -> CGSize {
-//        applyLayout()
-//        return contentView.sizeThatFits(size)
-//    }
+//	public override func layoutSubviews() {
+//		super.layoutSubviews()
+//		label.sizeToFit()
+//		value.sizeToFit()
+//		contentView.sizeToFit()
+//		self.sizeToFit()
+//		applyLayout()
+//		super.layoutSubviews()
+//	}
+
+	public override func sizeThatFits(_ size: CGSize) -> CGSize {
+		print("sizeThatFits: size: \(size)")
+		let height = max(contentView.bounds.size.height, value.bounds.size.height)
+		let width = contentView.bounds.size.width
+
+		let newSize = CGSize(width: width, height: height)
+		print("newSize: \(newSize)")
+		return newSize
+	}
 }
