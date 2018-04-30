@@ -18,8 +18,6 @@ class CustomCell: UITableViewCell {
         didSet {
             label.text = labelText
             label.yoga.markDirty()
-//			label.sizeToFit()
-//			configureLayoutWithYoga()
         }
     }
     
@@ -27,8 +25,6 @@ class CustomCell: UITableViewCell {
         didSet {
             value.text = valueText
 			value.yoga.markDirty()
-//			value.sizeToFit()
-//			configureLayoutWithYoga()
         }
     }
     
@@ -53,21 +49,18 @@ class CustomCell: UITableViewCell {
     
     public func setText(labelText: String, valueText: String?) {
         label.text = labelText
-//		label.yoga.markDirty()
+		label.sizeToFit()
+		label.yoga.markDirty()
 
 		value.text = valueText
-//		value.yoga.markDirty()
-
-//		contentView.yoga.markDirty()
-
-//		applyLayout()
+		value.sizeToFit()
+		value.yoga.markDirty()
 	}
 
     private func setupSubviews() {
 		label.font = UIFont.boldSystemFont(ofSize: 15)
 		label.backgroundColor = .yellow
 		label.numberOfLines = 1
-//		label.lineBreakMode = .byWordWrapping
 
 		value.font = UIFont.systemFont(ofSize: 15)
 		value.backgroundColor = UIColor.magenta
@@ -75,8 +68,8 @@ class CustomCell: UITableViewCell {
 		value.lineBreakMode = .byWordWrapping
 
 		configureViewHierarchy()
-//		configureLayoutWithYoga()
-		configureLayoutWithAutolayout()
+		configureLayoutWithYoga()
+//		configureLayoutWithAutolayout()
 	}
 
 	private func configureViewHierarchy() {
@@ -100,7 +93,6 @@ class CustomCell: UITableViewCell {
 		NSLayoutConstraint.activate([
 			label.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: 8.0),
 			label.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor),
-//			label.widthAnchor.constraint(greaterThanOrEqualToConstant: 50),
 
 			value.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 8),
 			value.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor),
@@ -112,58 +104,47 @@ class CustomCell: UITableViewCell {
 	}
 
 	public func configureLayoutWithYoga() {
+		label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+		value.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+		value.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+
 		contentView.configureLayout { layout in
 			layout.isEnabled = true
 			layout.width = YGValue(value: 100, unit: .percent)
 			layout.maxWidth = YGValue(value: 100, unit: .percent)
+			layout.minHeight = 44
 			layout.flexDirection = .row
 			layout.justifyContent = .flexStart
+			layout.padding = 8
 		}
 
 		label.configureLayout { layout in
 			layout.isEnabled = true
 			layout.alignSelf = .center
-//			layout.minHeight = 44
-			layout.minWidth = 30
+			layout.flexGrow = 1
 		}
 
 		value.configureLayout { layout in
 			layout.isEnabled = true
-//			layout.minHeight = 44
-			layout.flexGrow = 1
+			layout.flexGrow = 4
 			layout.flexShrink = 1
 			layout.marginLeft = 8
-			layout.marginRight = 8
 			layout.alignSelf = .center
-			layout.marginTop = 8
-			layout.marginBottom = 8
 		}
+	}
 
-		applyLayout()
+	public override func layoutSubviews() {
+		super.layoutSubviews()
+		self.applyLayout()
+		super.layoutSubviews()
 	}
 
 	public func applyLayout() {
-		contentView.yoga.applyLayout(preservingOrigin: true)
-//		contentView.yoga.applyLayout(preservingOrigin: true, dimensionFlexibility: .flexibleHeigth)
+		contentView.yoga.applyLayout(preservingOrigin: true, dimensionFlexibility: .flexibleHeigth)
 	}
 
-//	public override func layoutSubviews() {
-//		super.layoutSubviews()
-//		label.sizeToFit()
-//		value.sizeToFit()
-//		contentView.sizeToFit()
-//		self.sizeToFit()
-//		applyLayout()
-//		super.layoutSubviews()
-//	}
-
 	public override func sizeThatFits(_ size: CGSize) -> CGSize {
-		print("sizeThatFits: size: \(size)")
-		let height = max(contentView.bounds.size.height, value.bounds.size.height)
-		let width = contentView.bounds.size.width
-
-		let newSize = CGSize(width: width, height: height)
-		print("newSize: \(newSize)")
-		return newSize
+		self.applyLayout()
+		return contentView.sizeThatFits(size)
 	}
 }
